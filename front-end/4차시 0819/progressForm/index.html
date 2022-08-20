@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progressForm</title>
+    <style>
+        body {
+            background-color: #333;
+            padding: 20px;
+            color: #fff;
+        }
+
+        form fieldset {
+            border: none;
+        }
+
+        form legend {
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        form label {
+            display: block;
+        }
+
+        form input {
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        /* input안에 들어있는 값이 적절할 때, 다음을 적용 */
+        form input:valid {
+            background-color: antiquewhite;
+        }
+
+        progress {
+            width: 100%;
+        }
+
+        form button {
+            background-color: lightsteelblue;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="">
+        <!-- fieldset은 border를 만들어 줌.-->
+        <fieldset>
+            <legend>진행상황을 보여주는 설문지</legend>
+            <progress max="100" value="0" id="progress"></progress>
+            <p class="msg">설문지를 작성하세요!</p>
+
+            <label for="q1">질문 1.</label>
+            <!-- required를 작성해주면, 입력이 없을 시 알아서 경고 띄워줌. -->
+            <input type="email" id="ql" required> <!-- email형식으로 작성해야 o -->
+
+            <label for="q1">질문 2.</label>
+            <input type="text" id="q2" required>
+            
+            <label for="q1">질문 3.</label>
+            <input type="text" id="q3" required>
+            
+            
+            <button type="submit">제출</button>
+
+        </fieldset>
+    </form>
+
+
+    <script>
+        const progressBar = document.querySelector('progress');
+        const message = document.querySelector('.msg');
+        const mainForm = document.querySelector('form');
+        const inputs = document.querySelectorAll('input');
+
+        // 'keyup'이벤트 -> 키보드를 눌렀다 땔 때 발생하는 event
+        mainForm.addEventListener('keyup', ()=>{
+            let validCounter = 0;
+
+            inputs.forEach((item) => {
+                console.log(item.validity);
+                // valid -> 값이 있는지 확인
+                if(item.validity.valid){
+                    validCounter++;
+                }
+            })
+            
+            let progressValue = vaildCounter * 100 / inputs.length;
+
+            switch (validCounter){
+                case 1:
+                    message.textContent = "좋습니다! 계속 진행하세요";
+                    //progressBar.setAttribute('value', '20');
+                    //progressBar.setAttribute(`${validCounter * 20}`)
+                    //progressBar.setAttribute(`${validCounter * 100 / inputs.length}`);
+                    progressBar.setAttribute('value', progressValue);
+                    break;
+                case 2:
+                    message.textContent = "좋습니다! 계속 진행하세요";
+                    progressBar.setAttribute('value', progressValue);
+                    //progressBar.setAttribute('value', '40');
+                    break;
+                case  3:
+                    message.textContent = "거의 다 되었습니다!";
+                    progressBar.setAttribute('value', progressValue);
+                    //progressBar.setAttribute('value', '60');
+                    break;
+                default:
+                    progressBar.setAttribute('value', '0');
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 변수</title>
+    <style>
+        /* HTML요소의 최상위 요소를 선택 */
+        :root {
+            --main-bgColor: teal;
+            --main-txtColor: white;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-size: 1.5em;
+            background-color: var(--main-bgColor);
+        }
+
+        
+        .wrapper {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            --my-text: 50px; /* .wrapper 안에서만 사용 가능.*/
+        }
+        .wrapper label {
+            font-size: var(--my-text);
+        }
+        .picker {
+            display: inline-block;
+        }
+        /*인접 형제 선택자 (+) */
+        .picker+.picker {
+            margin-left: 30px;
+        }
+        main {
+            color : var(--main-txtColor);
+            /* --my-text: 50px; */ /* .wrapper 안에서만 사용 가능 => main에는 적용되지 않는 것을 확인할 수 있다. */
+        }
+    </style>
+</head>
+<body>
+    <section class="wrapper">
+        <!-- 위젯 -> article 사용 -->
+        <article class="picker">
+            <!-- input과 label은 한 세트 (웹 접근성) -->
+            <label for="">배경색 : </label>
+            <input id="bg" type="color" class="inp-picker" data-id="bgColor">
+        </article>
+        <article class="picker">
+            <label for="">글씨색 : </label>
+            <input id="txt" type="color" class="inp-picker" data-id="txtColor">
+        </article>
+    
+    </section>
+    <main>
+        <h1>Color Picker!</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa explicabo consectetur aperiam architecto illum quae, repellat neque. Tempore necessitatibus sed quibusdam cumque soluta, consequuntur earum rerum est, nesciunt reprehenderit eligendi.
+        </p>
+    </main>
+
+    <script>
+        const inpPicker = document.querySelectorAll('.inp-picker');
+
+        /* dataset 으로 data-id에 접근할 수 있다. => input안에있는 id에 접근*/
+        inpPicker.forEach((item) => {
+            item.addEventListener('input', (event) => {
+                const name = `--main-${event.target.dataset.id}`;
+
+                const root = document.querySelector(':root');
+                root.style.setProperty(name, event.target.value);
+            })
+        })
+    </script>
+</body>
+</html>
