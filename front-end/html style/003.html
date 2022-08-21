@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        인라인 JS
+        외부 JS
+        내부 JS
+    -->d
+    <script>
+        // 변수선언
+        // var, let, cnost
+        // 실무에서는 const를 많이 사용하고
+        // let은 필요한 경우에 사용하시면 됩니다.
+        // var는 권하지 않습니다.
+        const 파이 = 3.14
+        파이 = 100
+        const x = 10
+        x = 100
+        console.log(x);
+        
+        // 산술 연산
+        // +, =, /, *, %, **
+        console.log(10 % 3)
+
+        //논리연산
+        // &, |, !
+        // true : 1
+        // false : 0
+        // and는 곱
+        // or은 합
+        // console.log(true & false); //1
+
+        // for ( let i = 0; index < 100; i++) {
+        //     if (i%3 == 0 && i % 5 == 0) {
+        //         console.log(i)
+        //     }
+        // }
+
+        // for (let i=0; i < 10; i++){
+        //     console.log(i);
+        // }
+
+        // console.log('---------------')
+
+        // /* in은 key만 출력*/
+        // for (const key in ['hello', 'world']) {
+        //     console.log(key); //hello와 world의 index를 출력
+        // }
+
+        // for (const key in { '1' : 'hello', '2' : 'hi'}{
+        //     console.log(key);
+        // })
+
+        // /*object를 순회하는 것이 아니라,
+        //     요소를 하나씩 꺼내서 순회를 한다. */
+        // for (const iterator of ['hello', 'world']) {
+        //     console.log(iterator);
+        // }
+
+        // for (const iterator of 'hello wolrd') {
+        //     console.log(iterator)
+        // }
+
+        //DOM
+        let body = document.body;
+        let a = document.createElement('h1');
+        a.setAttribute('class', 'class A');
+        a.textContent = 'hello world'
+        body.appendChild(a);
+    </script>
+</body>
+</html>
